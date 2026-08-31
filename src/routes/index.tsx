@@ -1,24 +1,47 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout } from "@/components/SiteLayout";
+import { Hero } from "@/components/sections/Hero";
+import { Intro } from "@/components/sections/Intro";
+import { Services } from "@/components/sections/Services";
+import { FeaturedPortfolio } from "@/components/sections/FeaturedPortfolio";
+import { Process } from "@/components/sections/Process";
+import { WhyUs } from "@/components/sections/WhyUs";
+import { Showcase } from "@/components/sections/Showcase";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { CtaBanner } from "@/components/sections/CtaBanner";
+import { ContactSection } from "@/components/sections/ContactSection";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Dream Factory Events | Premium Event Planning & Decor in Pune";
+const description =
+  "Dream Factory Events creates unforgettable celebrations, corporate events, retail launches and large-scale venue experiences in Pune.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <SiteLayout>
+      <Hero />
+      <Intro />
+      <Services />
+      <FeaturedPortfolio />
+      <Process />
+      <WhyUs />
+      <Showcase />
+      <Testimonials />
+      <CtaBanner />
+      <ContactSection />
+    </SiteLayout>
   );
 }
