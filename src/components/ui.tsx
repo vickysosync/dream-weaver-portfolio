@@ -191,8 +191,8 @@ export function Field({
 }: {
   label: string;
   children: ReactNode;
-  error?: string;
-  htmlFor?: string;
+  error?: string | undefined;
+  htmlFor?: string | undefined;
 }) {
   return (
     <div className="space-y-2">
