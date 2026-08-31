@@ -14,6 +14,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ExperiencesRouteImport } from './routes/experiences'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
 import { Route as PortfolioProjectIdRouteImport } from './routes/portfolio.$projectId'
 
@@ -42,6 +44,16 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
   id: '/portfolio/',
   path: '/portfolio/',
@@ -59,6 +71,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/experiences': typeof ExperiencesRoute
   '/services': typeof ServicesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
   '/portfolio/$projectId': typeof PortfolioProjectIdRoute
   '/portfolio/': typeof PortfolioIndexRoute
 }
@@ -68,6 +82,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/experiences': typeof ExperiencesRoute
   '/services': typeof ServicesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
   '/portfolio/$projectId': typeof PortfolioProjectIdRoute
   '/portfolio': typeof PortfolioIndexRoute
 }
@@ -78,6 +94,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/experiences': typeof ExperiencesRoute
   '/services': typeof ServicesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
   '/portfolio/$projectId': typeof PortfolioProjectIdRoute
   '/portfolio/': typeof PortfolioIndexRoute
 }
@@ -89,6 +107,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experiences'
     | '/services'
+    | '/admin/dashboard'
+    | '/admin/login'
     | '/portfolio/$projectId'
     | '/portfolio/'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +118,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experiences'
     | '/services'
+    | '/admin/dashboard'
+    | '/admin/login'
     | '/portfolio/$projectId'
     | '/portfolio'
   id:
@@ -107,6 +129,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experiences'
     | '/services'
+    | '/admin/dashboard'
+    | '/admin/login'
     | '/portfolio/$projectId'
     | '/portfolio/'
   fileRoutesById: FileRoutesById
@@ -117,6 +141,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ExperiencesRoute: typeof ExperiencesRoute
   ServicesRoute: typeof ServicesRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   PortfolioProjectIdRoute: typeof PortfolioProjectIdRoute
   PortfolioIndexRoute: typeof PortfolioIndexRoute
 }
@@ -158,6 +184,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio/': {
       id: '/portfolio/'
       path: '/portfolio'
@@ -181,6 +221,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ExperiencesRoute: ExperiencesRoute,
   ServicesRoute: ServicesRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminLoginRoute: AdminLoginRoute,
   PortfolioProjectIdRoute: PortfolioProjectIdRoute,
   PortfolioIndexRoute: PortfolioIndexRoute,
 }
