@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ExperiencesRouteImport } from './routes/experiences'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PortfolioIndexRouteImport } from './routes/portfolio.index'
+import { Route as PortfolioProjectIdRouteImport } from './routes/portfolio.$projectId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperiencesRoute = ExperiencesRouteImport.update({
+  id: '/experiences',
+  path: '/experiences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
+  id: '/portfolio/',
+  path: '/portfolio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioProjectIdRoute = PortfolioProjectIdRouteImport.update({
+  id: '/portfolio/$projectId',
+  path: '/portfolio/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/experiences': typeof ExperiencesRoute
+  '/services': typeof ServicesRoute
+  '/portfolio/$projectId': typeof PortfolioProjectIdRoute
+  '/portfolio/': typeof PortfolioIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/experiences': typeof ExperiencesRoute
+  '/services': typeof ServicesRoute
+  '/portfolio/$projectId': typeof PortfolioProjectIdRoute
+  '/portfolio': typeof PortfolioIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/experiences': typeof ExperiencesRoute
+  '/services': typeof ServicesRoute
+  '/portfolio/$projectId': typeof PortfolioProjectIdRoute
+  '/portfolio/': typeof PortfolioIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/experiences'
+    | '/services'
+    | '/portfolio/$projectId'
+    | '/portfolio/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/experiences'
+    | '/services'
+    | '/portfolio/$projectId'
+    | '/portfolio'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/experiences'
+    | '/services'
+    | '/portfolio/$projectId'
+    | '/portfolio/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  ExperiencesRoute: typeof ExperiencesRoute
+  ServicesRoute: typeof ServicesRoute
+  PortfolioProjectIdRoute: typeof PortfolioProjectIdRoute
+  PortfolioIndexRoute: typeof PortfolioIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experiences': {
+      id: '/experiences'
+      path: '/experiences'
+      fullPath: '/experiences'
+      preLoaderRoute: typeof ExperiencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio/': {
+      id: '/portfolio/'
+      path: '/portfolio'
+      fullPath: '/portfolio/'
+      preLoaderRoute: typeof PortfolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio/$projectId': {
+      id: '/portfolio/$projectId'
+      path: '/portfolio/$projectId'
+      fullPath: '/portfolio/$projectId'
+      preLoaderRoute: typeof PortfolioProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  ExperiencesRoute: ExperiencesRoute,
+  ServicesRoute: ServicesRoute,
+  PortfolioProjectIdRoute: PortfolioProjectIdRoute,
+  PortfolioIndexRoute: PortfolioIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
